@@ -36,11 +36,17 @@ def main():
         for i in range(1,base):
             # i >> i% and %i (X all possible values in base, e.g. 0-9 for base10)
             # given that i < i% and i < %i, we do not need to check this
-            result += base + (base - 1)
+            # result += base + (base - 2)
+            digit_res = 2*base - 2
 
             # count all possible friends for full digits iX >> i%, %i, X%, %X
-            digits_res = int((base - i - 1)*(3*base - 2*i - 3) + (i + 1)*(2*(base-i-1)) + i*base - i*(1+i)/2)
-            result += digits_res
+            double_digits_res = int((base - i - 1)*(3*base - 2*i - 3) + (i + 1)*(2*(base-i-1)) + i*base - i*(1+i)/2)
+            sum_arithmic_sequence_lower = int( ((base-1)+(base-i))*i/2 )
+            sum_arithmic_sequence_higher =int(( 1 + base-i-2)*(base-i-2)/2 )
+            term1 = (i+1)*2*(base-i-1)
+            term2 = (base-i-1)*(base + 2*(base-i-1))
+            double_digits_res2 = term1 + sum_arithmic_sequence_lower + sum_arithmic_sequence_higher + term2
+            result += digit_res + double_digits_res2
 
         end = time.time()
         print("Counting friend numbers till %s yields %s, took %0.5f seconds" %(N,result, end-start))
