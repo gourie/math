@@ -44,7 +44,7 @@ def main():
             sum_arithmic_sequence_lower = int( ((base-1)+(base-i))*i/2 )
             sum_arithmic_sequence_higher =int(( 1 + base-i-2)*(base-i-2)/2 )
             term1 = (i+1)*2*(base-i-1)
-            term2 = (base-i-1)*(base + 2*(base-i-1))
+            term2 = (base-i-1)*(base-2 + 2*(base-i-1))
             double_digits_res2 = term1 + sum_arithmic_sequence_lower + sum_arithmic_sequence_higher + term2
             result += digit_res + double_digits_res2
 
