@@ -16,3 +16,6 @@ def main():
         return result, end-start
 
     sum(N)
+
+if __name__ == "__main__":
+    main()
