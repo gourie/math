@@ -2,7 +2,7 @@ import time
 
 def main():
 
-    N = 1e18
+    N = int(1e18)
 
     def sum(N):
         start = time.time()
