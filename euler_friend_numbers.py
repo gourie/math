@@ -34,8 +34,12 @@ def main():
         result = 0
         N = 100             # first attempt hard-coded for N=100
         for i in range(1,base):
-            # i >> i% and %i (X all possible values in base, e.g. 0-9 for base10)
-            result += 2*base - 2
+            # single digit: i >> i% and %i (X all possible values in base, e.g. 0-9 for base10)
+            result += 2*base-2
+            # single digits: extending for N=1000
+            result += base^2 + (base-2)*(2*base-2)
+            # single digits: extending for N=10000
+            result += base^3 + (base-2)*( base^2 + (base-1)*(2*base-1) )
 
             # count all possible friends for full digits iX >> i%, %i, X%, %X
             result += int( ((base-1)+(base-i))*i/2 )
