@@ -32,20 +32,27 @@ def main():
 
         start = time.time()
         result = 0
-        N = 100             # first attempt hard-coded for N=100
         for i in range(1,base):
-            # single digit: i >> i% and %i (X all possible values in base, e.g. 0-9 for base10)
+            # 1. till N=100=1e2
+            # single digit: friends XX
             result += 2*base-2
-            # single digits: extending for N=1000
-            result += base^2 + (base-2)*(2*base-2)
-            # single digits: extending for N=10000
-            result += base^3 + (base-2)*( base^2 + (base-1)*(2*base-1) )
-
-            # count all possible friends for full digits iX >> i%, %i, X%, %X
+            # double digits: friends XX
             result += int( ((base-1)+(base-i))*i/2 )
             result += int(( 1 + base-i-2)*(base-i-2)/2 )
             result += (i+1)*2*(base-i-1)
             result += (base-i-1)*(base-2 + 2*(base-i-1))
+
+            # 2. till N=1000=1e3
+            # single digits: extra friends XXX
+            result += base^2 + (base-2)*(2*base-1)
+            # double digits: extra friends XXX
+            result += (base-2)*( 2*base^2 + (base-2)*(2*base-1) + (base-3)*(2*base-1) )
+            result += 2*( base^2 + (base-2)*base + 2*(base-2)*(base-1) )
+            # triple digits: friends XXX
+
+            # 3. till N=10000=1e4
+            # single digits: extra friends XXXX
+            # result += base^3 + (base-2)*( base^2 + (base-1)*(2*base-1) )
 
         end = time.time()
         print("Counting friend numbers till %s yields %s, took %0.5f seconds" %(N,result, end-start))
